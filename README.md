@@ -1,6 +1,6 @@
-Together Culture — Dream Team
+# Together Culture — Dream Team
 
-A community platform built in C# — one of my first major team projects and the beginning of my journey as a software developer.
+> A community platform built in C# — one of my first major team projects and the beginning of my journey as a software developer.
 
 Together Culture — Dream Team is a Windows desktop community platform designed to bring members together through events, skill sharing, memberships, community discussions, time banking, and a community shop.
 
@@ -8,74 +8,68 @@ This project holds a special place in my development journey. It was one of the 
 
 Looking back at the project today, I can see both how far I have come and where my journey began.
 
-Table of Contents
-About the Project
-Technology Stack
-Project Structure
-Features
-Database
-Testing
-Security and Data Integrity
-Known Limitations
-Future Modernisation
-Running the Project
-What This Project Taught Me
-Why This Repository Matters
-Project Journey
-Project Status
-About the Project
+---
 
-Together Culture is a community-management platform with two primary types of users:
+## About
 
-Members — people who participate in the community.
-Administrators — users responsible for managing and moderating the platform.
+Together Culture is a community-management platform with two primary user types:
 
-The application brings several community services together into one desktop application.
+- **Members** — participate in the community and use its services.
+- **Administrators** — manage users, events, memberships, and community content.
 
-Members can:
+The platform brings several community services together into one Windows desktop application.
 
-Discover and book events
-Participate in skill sharing
-Manage their membership
-Purchase items through the community shop
-Exchange services through time banking
-Create and interact with community posts
-Manage their interests and profile
-Leave feedback on events
+### Members can
 
-Administrators can:
+- Browse and book events
+- Participate in skill sharing
+- Manage memberships
+- Purchase items through the community shop
+- Exchange services through time banking
+- Create and interact with community posts
+- Manage profiles and interests
+- Leave feedback on events
 
-Manage users
-Manage events
-Moderate community content
-Approve skill-sharing posts
-Manage membership tiers
-View payments and orders
-Perform administrative searches and operations
-Technology Stack
-Area	Technology
-Language	C#
-Framework	.NET 8
-Desktop UI	Windows Forms
-Database	SQL Server 2019 / LocalDB
-Database Language	T-SQL
-UI Components	Guna.UI2.WinForms
-Database Driver	System.Data.SqlClient
-Testing	MSTest / NUnit
-Mocking	Moq
-IDE	Visual Studio 2022
+### Administrators can
 
-The majority of the project is written in C#, with T-SQL used for the database schema and seed data.
+- Search and manage users
+- Create, edit, and delete events
+- Moderate community content
+- Approve skill-sharing posts
+- Manage membership tiers
+- View payments and orders
+- Perform administrative searches and operations
 
-Project Structure
+---
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Language | C# |
+| Framework | .NET 8 |
+| UI | Windows Forms |
+| Database | SQL Server 2019 / LocalDB |
+| Database Language | T-SQL |
+| UI Components | Guna.UI2.WinForms |
+| Database Driver | System.Data.SqlClient |
+| Testing | MSTest / NUnit |
+| Mocking | Moq |
+| IDE | Visual Studio 2022 |
+
+---
+
+## Architecture
+
+The original application follows a desktop-oriented structure separating the front-end screens, supporting back-end utilities, database resources, and tests.
+
+```text
 Together Culture (Dream Team)
 │
 ├── Together Culture (Dream Team)
-│   │
 │   ├── Back-End
 │   │   ├── Main
 │   │   │   └── Program.cs
-│   │   │
 │   │   └── ToolBoxItems
 │   │       ├── DatabaseConnect.cs
 │   │       └── RoundedPanel.cs
@@ -91,7 +85,6 @@ Together Culture (Dream Team)
 │   │   │   ├── Profile Forms
 │   │   │   ├── Skill Share Forms
 │   │   │   └── Landing Page Form
-│   │   │
 │   │   └── User Controls
 │   │
 │   ├── Database
@@ -110,320 +103,357 @@ Together Culture (Dream Team)
 │   └── TogetherCultureTests.csproj
 │
 └── Together Culture (Dream Team).sln
-Features
-User Management
+```
 
-The application supports different user types and provides separate experiences for members and administrators.
+---
 
-Members can manage:
+# Features
 
-Accounts
-Profiles
-Interests
-Memberships
+## Events & Ticketing
 
-Administrators have additional tools for searching and managing users.
+Members can browse upcoming events and workshops.
 
-Events and Ticketing
+The event system includes:
 
-Members can browse upcoming events and workshops through the application.
+- Event listings
+- Dates and times
+- Locations
+- Ticket prices
+- Maximum occupancy
+- Event bookings
+- Individual ticket records
+- Different attendee types
+- Booking statuses
 
-The event system supports:
+### Booking flow
 
-Event listings
-Event dates and times
-Locations
-Ticket prices
-Maximum occupancy
-Event bookings
-Individual ticket records
-Different attendee types
-Booking statuses
-
-Example booking flow:
-
+```text
 Browse Events
-      |
-      v
+      ↓
 Select Event
-      |
-      v
+      ↓
 Book Tickets
-      |
-      v
+      ↓
 Payment
-      |
-      v
+      ↓
 Booking Confirmation
-Community Shop
+```
 
-The platform includes a community shop with support for:
+## Memberships
 
-Products
-Product descriptions
-Pricing
-Stock levels
-Customer orders
-Order line items
-Shipping information
-Order statuses
-Skill Sharing
+The platform supports multiple membership types and tracks:
+
+- Membership tiers
+- Pricing
+- Duration
+- Discount rates
+- Access levels
+- Subscription start and end dates
+
+## Community Shop
+
+The shop supports:
+
+- Product listings
+- Product descriptions
+- Pricing
+- Stock levels
+- Customer orders
+- Order line items
+- Shipping information
+- Order statuses
+
+## Skill Sharing
 
 Members can offer or request skills from other members.
 
-A skill listing can contain:
+Each listing can contain:
 
-Service title
-Description
-Whether the user is offering or requesting
-Estimated time required
+- Service title
+- Description
+- Offering or requesting status
+- Estimated time required
 
-This forms part of the wider community and time-banking system.
+## Time Banking
 
-Time Banking
-
-The application includes a time-banking concept where members can exchange their time and skills.
+The platform includes a time-banking concept where members exchange their time and skills.
 
 Members can record:
 
-Time offered
-Time requested
-Current time balance
+- Time offered
+- Time requested
+- Time balance
 
-The goal is to allow members to contribute skills and receive help from others without relying solely on monetary transactions.
+## Community Board
 
-Community Board
+Members can interact through community posts and comments.
 
-The community board provides a place for members to interact.
+The system includes:
 
-Supported concepts include:
+- Posts
+- Comments
+- Likes
+- Community discussions
+- Administrative moderation
 
-Posts
-Comments
-Likes
-Community discussions
-
-Administrators can also moderate community content.
-
-Event Feedback
+## Event Feedback
 
 Members can provide feedback on events through:
 
-Ratings
-Comments
+- Ratings from 0–5
+- Written comments
 
-Ratings are represented on a 0–5 scale.
+---
 
-Database
+# Database
 
 The project uses SQL Server LocalDB with a relational database containing 14 tables.
 
-The main areas of the database include:
+The main areas of the database are:
 
+```text
 Users
- |
- +-- Memberships
- |
- +-- Events
- |    +-- Event Orders
- |         +-- Tickets
- |
- +-- Shop
- |    +-- Orders
- |         +-- Order Items
- |
- +-- Skill Sharing
- |
- +-- Time Banking
- |
- +-- Community Board
- |    +-- Comments
- |
- +-- Feedback
- |
- +-- Interests
- |
- +-- Documents
+├── Memberships
+├── Events
+│   ├── Event Orders
+│   └── Tickets
+├── Shop
+│   ├── Orders
+│   └── Order Items
+├── Skill Sharing
+├── Time Banking
+├── Community Board
+│   └── Comments
+├── Feedback
+├── Interests
+└── Documents
+```
 
-The database also contains:
+The database includes:
 
-Primary keys
-Foreign keys
-Unique constraints
-Check constraints
-Referential integrity rules
-Seed data
-Testing
+- Primary keys
+- Foreign keys
+- Unique constraints
+- Check constraints
+- Referential integrity rules
+- Seed data
 
-A separate test project was created for testing core application functionality.
+---
 
-Testing technologies used include:
+# Testing
 
-MSTest
-NUnit
-Moq
-Coverlet
+A separate test project was created for core application functionality.
 
-Existing tests cover areas such as:
+### Testing technologies
 
-Database connection behaviour
-Database operations
-User searches
-Event searches
-Administrative functionality
+- MSTest
+- NUnit
+- Moq
+- Coverlet
 
-The project therefore introduced testing as part of the development process rather than treating testing as an afterthought.
+### Existing coverage includes
 
-Security and Data Integrity
+- Database connection behaviour
+- Database operations
+- User searches
+- Event searches
+- Administrative functionality
 
-The original project already included several security and database-integrity practices.
+This project was an early introduction to testing software behaviour independently from the application itself.
 
-Parameterized SQL
+---
 
-Database queries use parameters in areas such as event searching, helping reduce SQL injection risks.
+# Security & Data Integrity
 
-Database Constraints
+The original project included several security and data-integrity practices.
 
-The database uses constraints to enforce valid data.
+### Parameterized SQL
 
-Examples include:
+Parameterized queries are used in areas such as event searching to reduce SQL injection risks.
 
-Unique usernames
-Unique email addresses
-Valid user types
-Valid payment methods
-Valid booking statuses
-Foreign Keys
+### Database Constraints
 
-Relationships between entities are enforced through foreign-key constraints, including cascading and null-setting behaviour where appropriate.
+The database uses constraints to enforce valid data, including:
 
-Known Limitations
+- Unique usernames
+- Unique email addresses
+- Valid user types
+- Valid payment methods
+- Valid booking statuses
 
-This project was created early in my C# development journey, and the architecture reflects what I knew at the time.
+### Foreign Keys
 
-Some known limitations include:
+Relationships between entities are enforced using foreign-key constraints, including cascading and null-setting behaviour where appropriate.
 
-Database logic is partially coupled to UI forms
-No dependency injection
-Synchronous database operations
-Hardcoded database connection configuration
-Passwords require proper hashing and security hardening
-Limited input validation
-Payment functionality remains incomplete
-Some community functionality remains unfinished
-Time-banking calculations require further implementation
-Email notifications are not implemented
+---
 
-These limitations are part of the project's history and also provide opportunities for future modernisation.
+# Known Limitations
 
-Future Modernisation
+This project was created early in my C# development journey, so the architecture reflects what I knew at the time.
 
-One of the reasons I am keeping this project is to potentially return to it with the knowledge and experience I have gained since its original development.
+Known limitations include:
 
-The original application provides a useful starting point for applying modern software engineering practices.
+- Database logic partially coupled to UI forms
+- No dependency injection
+- Synchronous database operations
+- Hardcoded database connection configuration
+- Passwords require proper hashing and security hardening
+- Limited input validation
+- Payment functionality remains incomplete
+- Some community functionality remains unfinished
+- Time-banking calculations require further implementation
+- Email notifications are not implemented
+
+These limitations are not being hidden. They are part of the project's history and provide opportunities for future modernisation.
+
+---
+
+# Future Modernisation
+
+One of the reasons I am keeping this project is to potentially return to it using the knowledge and experience I have gained since its original development.
 
 Potential improvements include:
 
+```text
 Original WinForms Application
-          |
-          v
-Better Architecture
-          |
-          +-- Service Layer
-          +-- Repository Layer
-          +-- Dependency Injection
-          +-- EF Core
-          +-- Async/Await
-          +-- Configuration Management
-          +-- Secure Authentication
-          +-- Input Validation
-          +-- Improved Testing
-          +-- Logging
+            │
+            ▼
+     Modernised Architecture
+            │
+      ┌─────┼──────────────┐
+      ▼     ▼              ▼
+  Services Repositories  EF Core
+      │     │              │
+      └─────┼──────────────┘
+            ▼
+    Dependency Injection
+            │
+            ▼
+       Async/Await
+            │
+            ▼
+ Configuration & Validation
+            │
+            ▼
+ Secure Authentication
+            │
+            ▼
+ Improved Testing & Logging
+```
 
-The goal would not simply be to rewrite the application, but to use it as a way of demonstrating how my understanding of software engineering has evolved.
+The goal would not simply be to rewrite the application.
 
-Running the Project
-Prerequisites
+Instead, the project can serve as a practical way to demonstrate how my understanding of software engineering has evolved.
 
-You will need:
+---
 
-Visual Studio 2022 or later
-.NET 8 SDK
-SQL Server LocalDB
-Windows
-1. Clone the Repository
+# Running the Project
+
+## Prerequisites
+
+- Visual Studio 2022 or later
+- .NET 8 SDK
+- SQL Server LocalDB
+- Windows
+
+## 1. Clone the repository
+
+```bash
 git clone <repository-url>
-2. Open the Solution
+```
+
+## 2. Open the solution
 
 Open:
 
+```text
 Together Culture (Dream Team).sln
+```
 
 in Visual Studio.
 
-3. Configure the Database
+## 3. Configure the database
 
-The original application uses a local .mdf SQL Server database.
+The original application uses a local `.mdf` SQL Server database.
 
-The database connection configuration in:
+The connection configuration in:
 
+```text
 Back-End/ToolBoxItems/DatabaseConnect.cs
+```
 
-may need to be updated to match your local environment.
+may need to be updated for your local environment.
 
-4. Create the Database
+## 4. Create and seed the database
 
 The repository contains:
 
+```text
 Database/
 ├── SQLQueryCreateDB.sql
 └── SQLQueryInsert.sql
+```
 
-Run the creation script followed by the seed-data script in SQL Server or Visual Studio.
+Run the database creation script followed by the seed-data script.
 
-5. Build
+## 5. Build
+
+```bash
 dotnet build
-6. Run
+```
+
+## 6. Run
+
+```bash
 dotnet run
+```
 
-Alternatively, run the application directly through Visual Studio using F5.
+Alternatively, run the application directly through Visual Studio using **F5**.
 
-7. Run Tests
+## 7. Run tests
+
+```bash
 dotnet test
-What This Project Taught Me
+```
 
-Although this project was created early in my C# journey, it introduced me to many concepts that would become fundamental to my later development.
+---
+
+# What This Project Taught Me
+
+Although this project was created early in my C# journey, it introduced me to many concepts that became fundamental to my later development.
 
 Among them:
 
-C# application development
-Object-oriented programming
-Windows desktop development
-Relational database design
-SQL and T-SQL
-CRUD operations
-Authentication and authorization concepts
-User roles
-Database relationships
-Foreign keys and constraints
-Parameterized queries
-Unit testing
-Mocking
-Team-based development
-Git and collaborative development
-Application architecture
+- C# application development
+- Object-oriented programming
+- Windows desktop development
+- Relational database design
+- SQL and T-SQL
+- CRUD operations
+- Authentication and authorization concepts
+- User roles
+- Database relationships
+- Foreign keys and constraints
+- Parameterized queries
+- Unit testing
+- Mocking
+- Team-based development
+- Git and collaborative development
+- Application architecture
 
 More importantly, it taught me something that cannot easily be learned from a tutorial:
 
-How much there is to learn when you try to build something real.
+> **How much there is to learn when you try to build something real.**
 
-Why This Repository Matters
+---
+
+# Why This Repository Matters
 
 This isn't the most advanced project on my GitHub.
 
 It isn't supposed to be.
 
-This is where I started.
+**This is where I started.**
 
 Together Culture was one of my first serious encounters with C#. I was still learning how programming languages, databases, user interfaces, testing, and software architecture fit together.
 
@@ -435,47 +465,58 @@ It gives me a snapshot of the developer I was when I started — and a reference
 
 The project started as a university team project, but looking back, it feels like something more:
 
-the beginning of something much bigger.
+> **The beginning of something much bigger.**
 
-Project Journey
+---
+
+# Project Journey
+
+```text
 First C# Code
-     |
-     v
+      │
+      ▼
 Together Culture
-     |
-     v
+      │
+      ▼
 First Team Development Experience
-     |
-     v
+      │
+      ▼
 Databases • SQL • Testing • Git
-     |
-     v
+      │
+      ▼
 More Projects
-     |
-     v
+      │
+      ▼
 More Advanced Architecture
-     |
-     v
+      │
+      ▼
 Modern .NET Development
-     |
-     v
-        ?
-  Something Bigger
+      │
+      ▼
+Something Bigger
+```
 
-Every developer has a first project.
+> **Every developer has a first project.**
+>
+> **This one was mine.**
 
-This one was mine.
+---
 
-Project Status
-Item	Status
-Original Project	Completed / Archived
-Current Purpose	Historical reference + potential modernisation
-Platform	Windows
-Language	C#
-Framework	.NET 8
-Database	SQL Server LocalDB
-Development	Team Project
-Final Note
+# Project Status
+
+| Item | Status |
+|---|---|
+| Original Project | Completed / Archived |
+| Current Purpose | Historical reference + potential modernisation |
+| Platform | Windows |
+| Language | C# |
+| Framework | .NET 8 |
+| Database | SQL Server LocalDB |
+| Development | Team Project |
+
+---
+
+## Final Note
 
 I am keeping the original implementation because I don't want to erase where I came from.
 
@@ -483,6 +524,6 @@ The code may eventually change. The architecture may change. The technologies ma
 
 But this repository will always represent the point where I first started turning ideas into software.
 
-Together Culture — Dream Team.
+**Together Culture — Dream Team.**
 
-The first step.
+*The first step.*
